@@ -6,11 +6,17 @@ The microbit module
 
 Everything directly related to interacting with the hardware lives in the `microbit` module.  For ease of use it's recommended you start all scripts with::
 
+与硬件交互直接相关的一切都存在于Microbit模块中。为了便于使用，建议您使用以下命令启动所有脚本：
+
     from microbit import *
 
 The following documentation assumes you have done this.
 
+以下文档假定您已完成此操作。
+
 There are a few functions available directly::
+
+有一些函数可以直接使用：
 
     # sleep for the given number of milliseconds.
     sleep(ms)
@@ -25,20 +31,32 @@ There are a few functions available directly::
 
 The rest of the functionality is provided by objects and classes in the microbit module, as described below.
 
+其它功能由Microbit模块中的对象和类提供，如下所述。
+
 Note that the API exposes integers only (ie no floats are needed, but they may be accepted).  We thus use milliseconds for the standard time unit.
 
-.. note::
-    You can see a list of all available modules by writing ``help('modules')`` in the REPL.
+注意，API只公开整数（即不需要浮点数，但可以接受它们）。因此，我们使用毫秒作为标准时间单位。
 
-Buttons
+.. note::
+
+注意：
+
+    You can see a list of all available modules by writing ``help('modules')`` in the REPL.
+    您可以通过在repl中写入help（“modules”）来查看所有可用模块的列表。
+
+Buttons 按钮
 -------
 
 There are 2 buttons::
+
+有两个按钮：
 
     button_a
     button_b
 
 These are both objects and have the following methods::
+
+它们都是对象，并具有以下方法：
 
     # returns True or False to indicate if the button is pressed at the time of
     # the method call.
@@ -49,10 +67,12 @@ These are both objects and have the following methods::
     # returns the running total of button presses, and resets this counter to zero
     button.get_presses()
 
-The LED display
+The LED display LED显示
 ---------------
 
 The LED display is exposed via the `display` object::
+
+LED通过display对象显示：
 
     # gets the brightness of the pixel (x,y). Brightness can be from 0 (the pixel
     # is off) to 9 (the pixel is at maximum brightness).
@@ -70,12 +90,16 @@ The LED display is exposed via the `display` object::
     # written messages).
     display.scroll(string, delay=400)
 
-Pins
+Pins 引脚
 ----
 
 Provide digital and analog input and output functionality, for the pins in the connector. Some pins are connected internally to the I/O that drives the LED matrix and the buttons.
 
+为连接器中的引脚提供数字和模拟输入和输出功能。 一些引脚内部连接到驱动LED矩阵和按钮的I / O上.
+
 Each pin is provided as an object directly in the ``microbit`` module.  This keeps the API relatively flat, making it very easy to use:
+
+每个引脚直接作为对象提供在microbit模块中。 这使API保持相对单一，使其易于使用：
 
     * pin0
     * pin1
@@ -87,6 +111,8 @@ Each pin is provided as an object directly in the ``microbit`` module.  This kee
     * pin20
 
 Each of these pins are instances of the ``MicroBitPin`` class, which offers the following API::
+
+这些引脚中的每一个都是MicroBitPin类的实例，它提供以下API：
 
     # value can be 0, 1, False, True
     pin.write_digital(value)
@@ -105,14 +131,18 @@ Each of these pins are instances of the ``MicroBitPin`` class, which offers the 
     # returns boolean
     pin.is_touched()
 
-Images
+Images 图片
 ------
 
 .. note::
 
+注意：
+
     You don't always need to create one of these yourself - you can access the
     image shown on the display directly with `display.image`. `display.image`
     is just an instance of `Image`, so you can use all of the same methods.
+
+    您并不总是需要自己创建其中一个 - 您可以使用display.image直接访问显示屏上显示的图像。 display.image只是Image的一个实例，因此您可以使用所有相同的方法。
 
 Images API::
 
@@ -212,10 +242,12 @@ Images API::
     Image.ALL_CLOCKS
     Image.ALL_ARROWS
 
-The accelerometer
+The  accelerometer 加速度计
 -----------------
 
 The accelerometer is accessed via the ``accelerometer`` object::
+
+通过accelerometer对象访问加速度计模块：
 
     # read the X axis of the device. Measured in milli-g.
     accelerometer.get_x()
@@ -237,11 +269,14 @@ The accelerometer is accessed via the ``accelerometer`` object::
 
 The recognised gestures are: ``up``, ``down``, ``left``, ``right``, ``face up``, ``face down``, ``freefall``, ``3g``, ``6g``, ``8g``, ``shake``.
 
+公认的手势是：上，下，左，右，面朝上，面朝下，自由落体，3g，6g，8g，摇晃。
 
-The compass
+The compass 指南针
 -----------
 
 The compass is accessed via the `compass` object::
+
+通过compass对象访问指南针：
 
     # calibrate the compass (this is needed to get accurate readings).
     compass.calibrate()
@@ -255,10 +290,12 @@ The compass is accessed via the `compass` object::
     # resets the compass to a pre-calibration state.
     compass.clear_calibration()
 
-I2C bus
+I2C bus I2C 总线
 -------
 
 There is an I2C bus on the micro:bit that is exposed via the `i2c` object.  It has the following methods::
+
+micro：bit上有一个I2C总线，通过i2c对象访问。 它有以下方法：
 
     # read n bytes from device with addr; repeat=True means a stop bit won't
     # be sent.
@@ -266,10 +303,12 @@ There is an I2C bus on the micro:bit that is exposed via the `i2c` object.  It h
     # write buf to device with addr; repeat=True means a stop bit won't be sent.
     i2c.write(addr, buf, repeat=False)
 
-UART
+UART 串口
 ----
 
 Use ``uart`` to communicate with a serial device connected to the device's I/O pins::
+
+通过uart与连接在设备I/O引脚上的串行设备通信：
 
     # set up communication (use pins 0 [TX] and 1 [RX]) with a baud rate of 9600.
     uart.init()
